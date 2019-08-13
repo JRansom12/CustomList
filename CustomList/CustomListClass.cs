@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    class CustomListClass
+    public class CustomListClass<T>
     {
-        public void Add()
+        private T[] items;
+        public void Add(T itemToAdd)
         {
             throw new NotImplementedException();
         }
