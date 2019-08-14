@@ -9,33 +9,35 @@ namespace CustomList
     public class CustomListClass<T>
     {
         // member variables
-        private T[] items;
-        private List<T> customList;
-        private int count;
-        public int capacity;
+        private readonly T[] items;
+        public int count { get; private set; }
+        public int capacity { get; private set; }
 
         // constructor
         public CustomListClass()
         {
-            customList = new List<T>();
             items = new T[4];
+            count = 0;
+            capacity = 10;
         }
 
         // member methods
-        public void Add(T itemToAdd)
+        //throw new NotImplementedException();
+        public void Add(T itemToAdd) //imitate the c# Add method
         {
-            //throw new NotImplementedException();
-            
+            items[count] = itemToAdd;
+            count++;
+            if (count >= capacity)
+            {
+                capacity *= 2;
+            }
         }
-        public int Count
+
+        public int Count //read only
         {
             get
             {
                 return count;
-            }
-            set
-            {
-                count = value;
             }
         }
         public int Capacity
@@ -53,15 +55,15 @@ namespace CustomList
         {
             get
             {
-                if (index < 0 && index >= items.Length)
-                    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
+                //if (index < 0 && index >= items.Length)
+                //    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
 
                 return items[index];
             }
             set
             {
-                if (index < 0 && index >= items.Length)
-                    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
+                //if (index < 0 && index >= items.Length)
+                //    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
 
                 items[index] = value;
             }
