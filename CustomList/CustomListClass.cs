@@ -9,30 +9,43 @@ namespace CustomList
     public class CustomListClass<T>
     {
         // member variables
-        private readonly T[] items;
+        private T[] items;
         public int count { get; private set; }
         public int capacity { get; private set; }
 
         // constructor
         public CustomListClass()
         {
-            items = new T[4];
+            capacity = 4;
+            items = new T[capacity];
             count = 0;
-            capacity = 10;
         }
 
         // member methods
-        //throw new NotImplementedException();
-        public void Add(T itemToAdd) //imitate the c# Add method
+
+        public void Add(T itemToAdd)
         {
+            if (count == capacity)
+            {
+                IncreaseCapacity();
+            }
             items[count] = itemToAdd;
             count++;
-            if (count >= capacity)
-            {
-                capacity *= 2;
-            }
         }
-
+        private void IncreaseCapacity()
+        {
+            T[] Array = new T[capacity * 2];
+            for(int i = 0; i < capacity; i++)
+            {
+                Array[i] = items[i];
+            }
+            capacity *= 2;
+            items = Array;
+        }
+        public void Remove(T itemToRemove)
+        {
+            throw new NotImplementedException();
+        }
         public int Count //read only
         {
             get

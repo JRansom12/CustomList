@@ -115,5 +115,83 @@ namespace CustomListTest
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+
+
+
+        [TestMethod]
+        public void Remove_OneItemFromList_CountGoesDownToOne()
+        {
+            // arrange
+            CustomListClass<int> customList = new CustomListClass<int>();
+            int expected = 1;
+            int actual;
+
+            // act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Remove(2);
+            actual = customList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_TwoItemsFromList_CountGoesDownToOne()
+        {
+            // arrange
+            CustomListClass<int> customList = new CustomListClass<int>();
+            int expected = 1;
+            int actual;
+
+            // act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(2);
+            customList.Remove(2);
+            actual = customList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_ItemFromList_CountGoesDownTwoToOne()
+        {
+            // arrange
+            CustomListClass<int> customList = new CustomListClass<int>();
+            int expected = 0;
+            int actual;
+
+            // act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(2);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(2);
+            customList.Remove(2);
+            actual = customList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_TwoItemsFromList_CountGoesDownTwoToOne()
+        {
+            // arrange
+            CustomListClass<int> customList = new CustomListClass<int>();
+            int expected = 0;
+            int actual;
+
+            // act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(2);
+            customList.Remove(2);
+            actual = customList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
