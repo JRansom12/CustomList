@@ -130,18 +130,18 @@ namespace CustomListTest
             // act
             customList.Add(1);
             customList.Add(2);
-            customList.Remove(2);
+            customList.Remove(1);
             actual = customList.Count;
 
             // assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Remove_TwoItemsFromList_CountGoesDownToOne()
+        public void Remove_FirstInstanceOfItemFromList_CountGoesDownToTwo()
         {
             // arrange
             CustomListClass<int> customList = new CustomListClass<int>();
-            int expected = 1;
+            int expected = 2;
             int actual;
 
             // act
@@ -155,11 +155,11 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Remove_ItemFromList_CountGoesDownTwoToOne()
+        public void Remove_ItemFromList_ArraySizeStaysSame()
         {
             // arrange
             CustomListClass<int> customList = new CustomListClass<int>();
-            int expected = 0;
+            int expected = 8;
             int actual;
 
             // act
@@ -168,27 +168,27 @@ namespace CustomListTest
             customList.Add(2);
             customList.Add(1);
             customList.Add(2);
-            customList.Add(2);
             customList.Remove(2);
-            actual = customList.Count;
+            actual = customList.Capacity;
 
             // assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Remove_TwoItemsFromList_CountGoesDownTwoToOne()
+        public void Remove_ItemFromMiddleOfList_ListShrinksByOne()
         {
             // arrange
             CustomListClass<int> customList = new CustomListClass<int>();
-            int expected = 0;
+            int expected = 4;
             int actual;
 
             // act
             customList.Add(1);
             customList.Add(2);
-            customList.Add(2);
-            customList.Remove(2);
-            actual = customList.Count;
+            customList.Add(3);
+            customList.Add(4);
+            customList.Remove(3);
+            actual = customList[2];
 
             // assert
             Assert.AreEqual(expected, actual);
