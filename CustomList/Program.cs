@@ -18,7 +18,7 @@ namespace CustomList
             customList.Add(6);
             customList.Add(7);
             customList.Add(8);
-            customList.Remove(7);
+            customList.Remove(6);
         }
     }
 }

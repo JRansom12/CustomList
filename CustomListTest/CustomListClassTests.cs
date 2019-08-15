@@ -175,11 +175,29 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void Remove_ItemFromMiddleOfList_ListShrinksByOne()
+        public void Remove_ItemNotInList_ListStaysTheSame()
         {
             // arrange
             CustomListClass<int> customList = new CustomListClass<int>();
-            int expected = 2;
+            int expected = 3;
+            int actual;
+
+            // act
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Remove(4);
+            actual = customList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_ItemFromMiddleOfList_LastIndicieGoesToZero()
+        {
+            // arrange
+            CustomListClass<int> customList = new CustomListClass<int>();
+            int expected = 0;
             int actual;
 
             // act
@@ -187,7 +205,26 @@ namespace CustomListTest
             customList.Add(2);
             customList.Add(3);
             customList.Remove(1);
-            actual = customList[0];
+            actual = customList[2];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_StringsAddedToList_ConvertToOneString()
+        {
+            // arrange
+            CustomListClass<string> customList = new CustomListClass<string>();
+            string expected = "1,Two,3,Four";
+            string actual;
+
+            // act
+            customList.Add("1");
+            customList.Add("Two");
+            customList.Add("3");
+            customList.Add("Four");
+            actual = customList.ToString();
+
 
             // assert
             Assert.AreEqual(expected, actual);

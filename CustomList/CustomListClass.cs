@@ -46,25 +46,34 @@ namespace CustomList
         //throw new NotImplementedException();
         public void Remove(T itemToRemove)
         {
-            T[] Array = new T[capacity];
-            for (int i = 0; i<count + 1; i++)
+            bool itemFound = false;
+            for (int i = 0; i <= count; i++)
             {
-                if (itemToRemove.Equals(items[i]))
+                if (!itemFound)
                 {
-
+                    if (itemToRemove.Equals(items[i]))
+                    {
+                        itemFound = true;
+                        items[i] = items[i + 1];
+                        count--;
+                    }
                 }
                 else
                 {
-                    Array[i] = items[i];
+                    if (i == count)
+                    {
+                        items[i] = default;
+                    }
+                    else
+                    {
+                        items[i] = items[i + 1];
+                    }
                 }
-            Array[i] = items[i + 1];
             }
-            items = Array;
-            count--;
         }
         public override string ToString()
         {
-            return "";
+            return (string)Convert.ChangeType(items, typeof(string));
         }
         public int Count //read only
         {
