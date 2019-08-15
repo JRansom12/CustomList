@@ -179,16 +179,15 @@ namespace CustomListTest
         {
             // arrange
             CustomListClass<int> customList = new CustomListClass<int>();
-            int expected = 4;
+            int expected = 2;
             int actual;
 
             // act
             customList.Add(1);
             customList.Add(2);
             customList.Add(3);
-            customList.Add(4);
-            customList.Remove(3);
-            actual = customList[2];
+            customList.Remove(1);
+            actual = customList[0];
 
             // assert
             Assert.AreEqual(expected, actual);

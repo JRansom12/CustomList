@@ -10,7 +10,6 @@ namespace CustomList
     {
         // member variables
         private T[] items;
-        private T removedItem;
         public int count { get; private set; }
         public int capacity { get; private set; }
 
@@ -43,24 +42,29 @@ namespace CustomList
             capacity *= 2;
             items = Array;
         }
+
+        //throw new NotImplementedException();
         public void Remove(T itemToRemove)
         {
-            //throw new NotImplementedException();
-            for(int i = 0; i < count; i++)
+            T[] Array = new T[capacity];
+            for (int i = 0; i<count + 1; i++)
             {
-                T[] Array = new T[capacity];
-                if(itemToRemove.Equals(items[i]))
+                if (itemToRemove.Equals(items[i]))
                 {
-                    items[i] = removedItem;
-                    return;
+
                 }
                 else
                 {
                     Array[i] = items[i];
                 }
-                Array[i] = items[i + 1];
-                items = Array;
+            Array[i] = items[i + 1];
             }
+            items = Array;
+            count--;
+        }
+        public override string ToString()
+        {
+            return "";
         }
         public int Count //read only
         {
