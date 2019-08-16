@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomListClass<T>
+    public class CustomListClass<T> : IEnumerable
     {
         // member variables
         private T[] items;
@@ -22,6 +23,13 @@ namespace CustomList
         }
 
         // member methods
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
 
         public void Add(T itemToAdd)
         {
@@ -58,7 +66,7 @@ namespace CustomList
                         count--;
                     }
                 }
-                else
+                else //item is found
                 {
                     if (i == count)
                     {
@@ -73,8 +81,19 @@ namespace CustomList
         }
         public override string ToString()
         {
-            string[] newArray = items.Select(i => i.ToString()).ToArray();
-            return string.Join(",", newArray);
+            string newString = "";
+            newString += items[0].ToString();
+            for(int i = 1; i < count; i++)
+                {
+                    newString += "," + items[i].ToString();
+                }
+            return newString;
+            //string[] newArray = items.Select(i => i.ToString()).ToArray();
+            //return string.Join(",", newArray);
+        }
+        public void OverloadPlusOperator()
+        {
+
         }
 
         public int Count //read only

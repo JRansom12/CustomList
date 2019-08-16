@@ -248,5 +248,56 @@ namespace CustomListTest
             // assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void ToString_StringAddedToList_WriteLineHasListNotArray()
+        {
+            // arrange
+            CustomListClass<string> customList = new CustomListClass<string>();
+            string expected = "One,Two,Three,Four,Five";
+            string actual;
+
+            // act
+            customList.Add("One");
+            customList.Add("Two");
+            customList.Add("Three");
+            customList.Add("Four");
+            customList.Add("Five");
+            actual = customList.ToString();
+
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        //[TestMethod]
+        //public void OverloadPlusOperator_TwoDifferentIntLists_BecomesOneListListOneThenListTwo()
+        //{
+        //    // arrange
+        //    CustomListClass<int> expected = { 1, 3, 5, 2, 4, 6 };
+        //    CustomListClass<int> actual;
+
+        //    // act
+        //    CustomListClass<int> one = new CustomListClass<int>() { 1, 3, 5 };
+        //    CustomListClass<int> two = new CustomListClass<int>() { 2, 4, 6 };
+        //    actual = OverloadPlusOperater(one + two);
+
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
+
+        //[TestMethod]
+        //public void OverloadPlusOperator_TwoSameStringLists_BecomesOneListListOneThenListTwo()
+        //{
+        //    // arrange
+        //    CustomListClass<string> expected = { "Bledsoe", "Giannis", "Bledsoe", "Giannis" };
+        //    CustomListClass<string> actual;
+
+        //    // act
+        //    CustomListClass<string> one = new CustomListClass<string>() { "Bledsoe", "Giannis" };
+        //    CustomListClass<string> two = new CustomListClass<string>() { "Bledsoe", "Giannis" };
+        //    actual = OverloadPlusOperator(one + two);
+
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
     }
 }

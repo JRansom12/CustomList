@@ -20,6 +20,10 @@ namespace CustomList
             customList.Add(8);
             customList.Remove(6);
             Console.WriteLine(customList.ToString());
+            foreach(int item in customList)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadLine();
         }
     }
