@@ -73,8 +73,10 @@ namespace CustomList
         }
         public override string ToString()
         {
-            return (string)Convert.ChangeType(items, typeof(string));
+            string[] newArray = items.Select(i => i.ToString()).ToArray();
+            return string.Join(",", newArray);
         }
+
         public int Count //read only
         {
             get

@@ -211,17 +211,36 @@ namespace CustomListTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ToString_StringsAddedToList_ConvertToOneString()
+        public void ToString_IntAddedToList_ConvertToOneString()
         {
             // arrange
-            CustomListClass<string> customList = new CustomListClass<string>();
-            string expected = "1,Two,3,Four";
+            CustomListClass<int> customList = new CustomListClass<int>();
+            string expected = "1,2,3,4";
             string actual;
 
             // act
-            customList.Add("1");
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            actual = customList.ToString();
+
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_StringAddedToList_ConvertToOneString()
+        {
+            // arrange
+            CustomListClass<string> customList = new CustomListClass<string>();
+            string expected = "One,Two,Three,Four";
+            string actual;
+
+            // act
+            customList.Add("One");
             customList.Add("Two");
-            customList.Add("3");
+            customList.Add("Three");
             customList.Add("Four");
             actual = customList.ToString();
 
