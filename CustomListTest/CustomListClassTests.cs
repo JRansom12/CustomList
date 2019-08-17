@@ -268,36 +268,142 @@ namespace CustomListTest
             // assert
             Assert.AreEqual(expected, actual);
         }
-        //[TestMethod]
-        //public void OverloadPlusOperator_TwoDifferentIntLists_BecomesOneListListOneThenListTwo()
-        //{
-        //    // arrange
-        //    CustomListClass<int> expected = { 1, 3, 5, 2, 4, 6 };
-        //    CustomListClass<int> actual;
+        [TestMethod]//Have not tested Zip method yet
+        public void Zip_TwoListsSame_OneListEachIntTwiceInARow()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 1, 2, 3 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 1, 2, 3 };
+            CustomListClass<int> expected = new CustomListClass<int>() { 1, 1, 2, 2, 3, 3 };
+            CustomListClass<int> actual = new CustomListClass<int>();
 
-        //    // act
-        //    CustomListClass<int> one = new CustomListClass<int>() { 1, 3, 5 };
-        //    CustomListClass<int> two = new CustomListClass<int>() { 2, 4, 6 };
-        //    actual = OverloadPlusOperater(one + two);
+            // act
+            actual = actual.Zip(listOne, listTwo);
 
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //}
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
-        //[TestMethod]
-        //public void OverloadPlusOperator_TwoSameStringLists_BecomesOneListListOneThenListTwo()
-        //{
-        //    // arrange
-        //    CustomListClass<string> expected = { "Bledsoe", "Giannis", "Bledsoe", "Giannis" };
-        //    CustomListClass<string> actual;
 
-        //    // act
-        //    CustomListClass<string> one = new CustomListClass<string>() { "Bledsoe", "Giannis" };
-        //    CustomListClass<string> two = new CustomListClass<string>() { "Bledsoe", "Giannis" };
-        //    actual = OverloadPlusOperator(one + two);
+        [TestMethod]
+        public void OverloadPlusOperator_TwoDifferentIntLists_BecomesOneListListOneThenListTwo()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 1, 3, 5 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 2, 4, 6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 1, 3, 5, 2, 4, 6 };
 
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //}
+            // act
+            actual = listOne + listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadPlusOperator_ListWithZeroListWithNegatives_BecomesOneListWithAllInt()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 0, 0, 5 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { -2, -4, 6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 0, 0, 5, -2, -4, 6 };
+
+            // act
+            actual = listOne + listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadPlusOperator_TwoDifferentDataTypeLists_BecomesOneStringList()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 1, 2, };
+            CustomListClass<string> listTwo = new CustomListClass<string>() { "fish", "fish", };
+            CustomListClass<T> actual = new CustomListClass<T>();
+            CustomListClass<T> expected = new CustomListClass<T>() { 1, "fish", 2, "fish", };
+
+            // act
+            actual = listOne + listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadPlusOperator_OneEmptyList_BecomesOneList()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() {};
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 2, 4, 6, 8, 10 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 2, 4, 6, 8, 10 };
+
+            // act
+            actual = listOne + listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadMinusOperator_UserStoryExample_DisplaysOneListWithThreeAndFive()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 1, 3, 5 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 2, 1, 6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 3, 5 };
+
+            // act
+            actual = listOne - listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadMinusOperator_FirstListEmpty_EmptyList()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() {};
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 2, 1, 6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() {};
+
+            // act
+            actual = listOne - listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadMinusOperator_FirstListRepeatedValues_ClearsEachOfRepeatedValues()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { 2, 2, 3, 3, 6, 6 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { 2, 1, 6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 3, 3 };
+
+            // act
+            actual = listOne - listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void OverloadMinusOperator_ListWithZeroListWithNegativeValues_ClearsZeroAndNegativeValues()
+        {
+            // arrange
+            CustomListClass<int> listOne = new CustomListClass<int>() { -2, 2, 3, 0, -6, 6 };
+            CustomListClass<int> listTwo = new CustomListClass<int>() { -2, 0, -6 };
+            CustomListClass<int> actual = new CustomListClass<int>();
+            CustomListClass<int> expected = new CustomListClass<int>() { 2, 3, 6 };
+
+            // act
+            actual = listOne - listTwo;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

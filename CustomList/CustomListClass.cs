@@ -43,7 +43,7 @@ namespace CustomList
         private void IncreaseCapacity()
         {
             T[] Array = new T[capacity * 2];
-            for(int i = 0; i < capacity; i++)
+            for (int i = 0; i < capacity; i++)
             {
                 Array[i] = items[i];
             }
@@ -83,17 +83,43 @@ namespace CustomList
         {
             string newString = "";
             newString += items[0].ToString();
-            for(int i = 1; i < count; i++)
-                {
-                    newString += "," + items[i].ToString();
-                }
+            for (int i = 1; i < count; i++)
+            {
+                newString += /*"," + */items[i].ToString();
+            }
             return newString;
             //string[] newArray = items.Select(i => i.ToString()).ToArray();
             //return string.Join(",", newArray);
         }
-        public void OverloadPlusOperator()
+        public static CustomListClass<T> operator + (CustomListClass<T> firstList, CustomListClass<T> secondList)
         {
+            CustomListClass<T> newList = new CustomListClass<T>();
+                                
+            return newList;
+        }
+        public static CustomListClass<T> Zip(CustomListClass<T> firstList, CustomListClass<T> secondList)
+        {
+            CustomListClass<T> newList = new CustomListClass<T>();
+            for(int i = 0; i < firstList.count || i < secondList.count; i++)
+            {
+                if(i < firstList.count)
+                {
+                    newList.Add(firstList[i]);
+                }
+                if(i < secondList.count)
+                {
+                    newList.Add(secondList[i]);
+                }
+            }
+            return newList;
+        }
 
+
+        public static CustomListClass<T> operator - (CustomListClass<T> firstList, CustomListClass<T> secondList)
+        {
+            CustomListClass<T> newList = new CustomListClass<T>();
+
+            return newList;
         }
 
         public int Count //read only
