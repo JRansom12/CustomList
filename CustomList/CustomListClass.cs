@@ -30,7 +30,6 @@ namespace CustomList
                 yield return items[i];
             }
         }
-
         public void Add(T itemToAdd)
         {
             if (count == capacity)
@@ -50,8 +49,6 @@ namespace CustomList
             capacity *= 2;
             items = Array;
         }
-
-        //throw new NotImplementedException();
         public void Remove(T itemToRemove)
         {
             bool itemFound = false;
@@ -66,7 +63,7 @@ namespace CustomList
                         count--;
                     }
                 }
-                else //item is found
+                else
                 {
                     if (i == count)
                     {
@@ -85,18 +82,58 @@ namespace CustomList
             newString += items[0].ToString();
             for (int i = 1; i < count; i++)
             {
-                newString += /*"," + */items[i].ToString();
+                newString += /*"," + */items[i].ToString(); //option to add a space, comma, or / inbetween each item
             }
             return newString;
-            //string[] newArray = items.Select(i => i.ToString()).ToArray();
-            //return string.Join(",", newArray);
         }
-        public static CustomListClass<T> operator + (CustomListClass<T> firstList, CustomListClass<T> secondList)
+        public static CustomListClass<T> operator + (CustomListClass<T> listOne, CustomListClass<T> listTwo)
         {
             CustomListClass<T> newList = new CustomListClass<T>();
-                                
+            foreach(T item in listOne)
+            {
+                newList.Add(item);
+            }
+            foreach(T item in listTwo)
+            {
+                newList.Add(item);
+            }
             return newList;
         }
+
+        public static CustomListClass<T> operator -(CustomListClass<T> listOne, CustomListClass<T> listTwo)
+        {
+            CustomListClass<T> newList = new CustomListClass<T>();
+            for (int i = 0; i < listOne.count; i++)
+            {
+                for (int j = 0; j < listTwo.count; j++)
+                {
+                    if (listOne[i].Equals(listTwo[j]))
+                    {
+                        
+                    }
+
+                    //if (listOne[i].Equals(listTwo[j]))
+                    //{
+                    //    listOne.count--;
+                    //    if (i == listOne.count)
+                    //    {
+                    //        listOne[i] = default;
+                    //    }
+                    //    else
+                    //    {
+                    //        listOne[i] = listOne[i + 1];
+                    //    }
+                    //}
+                }
+            }
+            return newList;
+            //foreach(T item in listOne)
+            //{
+            //    listTwo.Remove(item);
+            //}
+            //return listOne;
+        }
+
         public static CustomListClass<T> Zip(CustomListClass<T> firstList, CustomListClass<T> secondList)
         {
             CustomListClass<T> newList = new CustomListClass<T>();
@@ -114,15 +151,7 @@ namespace CustomList
             return newList;
         }
 
-
-        public static CustomListClass<T> operator - (CustomListClass<T> firstList, CustomListClass<T> secondList)
-        {
-            CustomListClass<T> newList = new CustomListClass<T>();
-
-            return newList;
-        }
-
-        public int Count //read only
+        public int Count
         {
             get
             {
@@ -135,25 +164,19 @@ namespace CustomList
             {
                 return capacity;
             }
-            //set
-            //{
-            //    capacity = value;
-            //}
         }
         public T this[int index] //Indexer
         {
             get
             {
-                //if (index < 0 && index >= items.Length)
-                //    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
-
+                if (index < 0 && index >= items.Length)
+                    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
                 return items[index];
             }
             set
             {
-                //if (index < 0 && index >= items.Length)
-                //    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
-
+                if (index < 0 && index >= items.Length)
+                    throw new IndexOutOfRangeException("Cannot store more than " + items.Length + " objects");
                 items[index] = value;
             }
         }

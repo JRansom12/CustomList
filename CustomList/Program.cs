@@ -14,17 +14,18 @@ namespace CustomList
             customList = new CustomListClass<int>();
             CustomListClass<int> otherList;
             otherList = new CustomListClass<int>();
-            CustomListClass<int> thirdList;
-            otherList = new CustomListClass<int>();
+            //CustomListClass<int> thirdList;
+            //otherList = new CustomListClass<int>();
 
             customList.Add(4);
-            customList.Add(5);
+            customList.Add(0);
             customList.Add(6);
             customList.Add(7);
-            customList.Add(8);
+            customList.Add(-10);
             customList.Remove(6);
-            otherList.Add(44);
-            otherList.Add(55);
+            otherList.Add(-10);
+            otherList.Add(0);
+            otherList.Add(4);
 
             Console.WriteLine(customList.ToString());
             Console.WriteLine(otherList.ToString());
@@ -32,8 +33,8 @@ namespace CustomList
             {
                 Console.WriteLine(item);
             }
-            //Have not tested Zip method yet
-            Console.WriteLine(thirdList.Zip(customList, otherList));
+            Console.WriteLine(customList + otherList);
+            Console.WriteLine(customList - otherList);
             Console.ReadLine();
         }
     }
