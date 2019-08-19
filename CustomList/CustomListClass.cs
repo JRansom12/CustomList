@@ -82,7 +82,7 @@ namespace CustomList
             newString += items[0].ToString();
             for (int i = 1; i < count; i++)
             {
-                newString += /*"," + */items[i].ToString(); //option to add a space, comma, or / inbetween each item
+                newString += "," + items[i].ToString(); //option to add a space, comma, or / inbetween each item
             }
             return newString;
         }
@@ -103,35 +103,24 @@ namespace CustomList
         public static CustomListClass<T> operator -(CustomListClass<T> listOne, CustomListClass<T> listTwo)
         {
             CustomListClass<T> newList = new CustomListClass<T>();
+            int k = 0;
+            bool itemFound = false;
             for (int i = 0; i < listOne.count; i++)
             {
                 for (int j = 0; j < listTwo.count; j++)
                 {
-                    if (listOne[i].Equals(listTwo[j]))
+                    if (!itemFound)
                     {
-                        
-                    }
-
-                    //if (listOne[i].Equals(listTwo[j]))
-                    //{
-                    //    listOne.count--;
-                    //    if (i == listOne.count)
-                    //    {
-                    //        listOne[i] = default;
-                    //    }
-                    //    else
-                    //    {
-                    //        listOne[i] = listOne[i + 1];
-                    //    }
-                    //}
+                        if (listOne[i].Equals(listTwo[j]))
+                        {
+                            itemFound = true;
+                            newList[k] = listOne[i];
+                            k++;
+                        }
+                }
                 }
             }
             return newList;
-            //foreach(T item in listOne)
-            //{
-            //    listTwo.Remove(item);
-            //}
-            //return listOne;
         }
 
         public static CustomListClass<T> Zip(CustomListClass<T> firstList, CustomListClass<T> secondList)

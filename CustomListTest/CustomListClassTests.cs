@@ -315,21 +315,6 @@ namespace CustomListTest
             // assert
             Assert.AreEqual(expected, actual);
         }
-        //[TestMethod]
-        //public void OverloadPlusOperator_TwoDifferentDataTypeLists_BecomesOneStringList()
-        //{
-        //    // arrange
-        //    CustomListClass<int> listOne = new CustomListClass<int>() { 1, 2, };
-        //    CustomListClass<string> listTwo = new CustomListClass<string>() { "fish", "fish", };
-        //    CustomListClass<T> actual = new CustomListClass<T>();
-        //    CustomListClass<T> expected = new CustomListClass<T>() { 1, "fish", 2, "fish", };
-
-        //    // act
-        //    actual = listOne + listTwo;
-
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //}
         [TestMethod]
         public void OverloadPlusOperator_OneEmptyList_BecomesOneList()
         {
